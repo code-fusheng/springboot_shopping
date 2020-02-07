@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.UserRepositorye">
+
+    <select id="login" resultType="xyz.fusheng.entity.User">
+        select * from sh_user where loginname = #{arg0} and password = #{arg1}
+    </select>
+
+    <select id="findAllAddressByUserId" parameterType="java.lang.Integer" resultType="xyz.fusheng.entity.UserAddress">
+        select * from sh_user_address where userid = #{id}
+    </select>
+
+    <insert id="register" parameterType="xyz.fusheng.entity.User">
+        insert into sh_user(loginname,username,password,sex,identitycode,email,mobile) values(#{loginName},#{userName},#{password},#{sex},#{identityCode},#{email},#{mobile})
+    </insert>
+    
+</mapper>

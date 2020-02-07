@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.ProductCategoryRepository">
+
+    <select id="findProductCategoryByLevel" parameterType="xyz.fusheng.entity.ProductCategory" resultType="xyz.fusheng.entity.ProductCategory">
+        select * from sh_product_category where type = #{type}
+        <if test="parentId != 0">
+            and parentid = #{parentId}
+        </if>
+    </select>
+
+    <select id="findAllProductByLevel" parameterType="xyz.fusheng.entity.ProductCategory" resultType="xyz.fusheng.entity.Product" >
+        select * from sh_product where
+        <if test="type == 1">
+            categoryleveloneid = #{id}
+        </if>
+        <if test="type == 2">
+            categoryleveltwoid = #{id}
+        </if>
+        <if test="type == 3">
+            categorylevelthreeid = #{id}
+        </if>
+    </select>
+
+
+
+</mapper>
